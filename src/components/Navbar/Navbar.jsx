@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navbar.css';
 import { icons, images } from '../../assets';
 
 export default function Navbar() {
+  const [menuButtonClicked, setMenuButtonClick] = useState(false);
+
+  let menuButtonId = menuButtonClicked ? 'menu-icon-animation' : 'menu-icon';
+  let menuContainerClass = menuButtonClicked ? 'menu-container-with-animation' : 'menu-container';
   return (
     <div className='container'>
       {/* logo */}
@@ -10,7 +14,7 @@ export default function Navbar() {
         <img src={images.logo} className='logo'/>
       </div>
       {/* menus */}
-      <div className={'menu-container'}>
+      <div className={menuContainerClass}>
         <div className='menu' id='home'>
           <img src={icons.home_icon} className={'icon'} />
           <div className='tooltip'>
@@ -55,7 +59,7 @@ export default function Navbar() {
         </div>
       </div>
       {/* menu button */}
-      <div id='menu-icon'>
+      <div id={menuButtonId} onClick={()=>setMenuButtonClick(!menuButtonClicked)}>
         <img src={icons.menu_icon} className='icon' />
       </div>
     </div>
