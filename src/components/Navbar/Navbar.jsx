@@ -7,11 +7,16 @@ export default function Navbar() {
 
   let menuButtonId = menuButtonClicked ? 'menu-icon-animation' : 'menu-icon';
   let menuContainerClass = menuButtonClicked ? 'menu-container-with-animation' : 'menu-container';
+
+  const handleMenuButtonClick = () => {
+    setMenuButtonClick(!menuButtonClicked)
+  }
+
   return (
     <div className='container'>
       {/* logo */}
       <div className='logo-container'>
-        <img src={images.logo} className='logo'/>
+        <img src={icons.logo} className='logo'/>
       </div>
       {/* menus */}
       <div className={menuContainerClass}>
@@ -59,7 +64,7 @@ export default function Navbar() {
         </div>
       </div>
       {/* menu button */}
-      <div id={menuButtonId} onClick={()=>setMenuButtonClick(!menuButtonClicked)}>
+      <div id={menuButtonId} onClick={handleMenuButtonClick}>
         <img src={icons.menu_icon} className='icon' />
       </div>
     </div>

@@ -7,8 +7,9 @@ export const icons = {
   experience_icon: require('./icons/experience.png'),
   contact_us_icon: require('./icons/contact_us.png'),
   menu_icon: require('./icons/menu.png'),
+  logo: require('./icons/logo.png'),
 }
 
 export const images = {
-  logo: require('./images/Portfolio-logo.png'),
+  
 }
