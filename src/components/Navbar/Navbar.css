@@ -20,7 +20,7 @@
   }
 
   .menu-container {
-    height: 400px;
+    height: auto;
     flex-direction: column;
     width: auto;
     position: fixed;
@@ -39,7 +39,7 @@
   }
 
   .menu-container-with-animation {
-    height: 380px;
+    height: auto;
     flex-direction: column;
     width: auto;
     position: absolute;
