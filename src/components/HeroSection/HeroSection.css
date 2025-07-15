@@ -1,0 +1,82 @@
+.heroSectionContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.profilePictureSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profilePicContainer {
+  width: 125px;
+  height: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  border-radius: 62.5px;
+}
+
+.profilePic {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+}
+
+.profileTitleContainer {
+  width: 110px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(255, 220, 139);
+  box-shadow: 5px 5px 5px 5px rgb(220, 220, 220);
+  margin-top: -20px;
+}
+
+#profileTitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.titleContainer {
+  margin-top: 30px;
+}
+
+.title {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.buttonsContainer {
+  width: 280px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: center;
+  margin-top: 30px;
+}
+
+.buttons {
+  min-width: 120px;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 15px;
+  color: black;
+}
+
+#demoVideo {
+  background-color: rgb(255, 220, 139);
+  border: 1px solid black;
+  box-shadow: 3px 3px 3px 3px rgb(220, 220, 220);
+  font-weight: 500;
+}
+
+#resume {
+  background-color: rgb(124, 160, 251);
+  color: black;
+  border: 1px solid black;
+  font-weight: 500;
+  box-shadow: 3px 3px 3px 3px rgb(220, 220, 220);
+}

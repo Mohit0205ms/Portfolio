@@ -11,5 +11,5 @@ export const icons = {
 }
 
 export const images = {
-  
+  empty_state_profile_pic: require('./images/empty_state_profile_picture.jpg'),
 }

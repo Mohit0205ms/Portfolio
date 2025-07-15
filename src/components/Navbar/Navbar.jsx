@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Navbar.css';
 import { icons, images } from '../../assets';
 import { navbarMenuList as data } from './data/data';
-import { iconMapperHelper } from './helper/utils';
+import { iconMapperHelper } from '../../helper/utils'
 
 export default function Navbar() {
   const [menuButtonClicked, setMenuButtonClick] = useState(false);
