@@ -180,9 +180,10 @@
   }
 
   .logo {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     margin-left: 20px;
+    margin-top: 30px;
   }
 
   .menu-container {
@@ -192,7 +193,7 @@
     position: absolute;
     margin-top: calc(100vh * 0.5);
     padding: 15px 5px;
-    margin-right: 30px;
+    margin-right: 10px;
     display: flex;
     background-color: white;
     justify-content: space-between;
@@ -200,6 +201,7 @@
     align-self: center;
     border-radius: 15px;
     box-shadow: 10px 10px 10px 10px rgb(220, 220, 220);
+    z-index: 1000;
   }
 
   .menu {
@@ -297,8 +299,8 @@
   }
 
   .logo {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     margin-left: 20px;
     margin-top: 30px;
   }
@@ -313,6 +315,7 @@
     padding: 5px 15px;
     border-radius: 15px;
     box-shadow: 10px 10px 10px 10px rgb(220, 220, 220);
+    z-index: 1000;
   }
 
   #home,

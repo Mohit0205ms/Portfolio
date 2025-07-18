@@ -52,15 +52,15 @@ export default function HeroSection() {
         <button className='buttons' id='demoVideo'>Demo Video</button>
       </div>
       {/* auto scrolling animation */}
-      <div>
-        <Marquee speed={50} gradient={false} style={{marginTop: 30}}>
-          <img src="https://www.patterns.dev/img/reactjs/react-logo@3x.svg" alt="React" style={{width: 50, height: 50, marginLeft: 10}} />
-          <img src="https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png" alt="AWS" style={{width: 50, height: 50,marginLeft: 10}} />
-          <img src="https://e7.pngegg.com/pngimages/780/934/png-clipart-html-logo-html5-logo-icons-logos-emojis-tech-companies-thumbnail.png" alt="TypeScript" style={{width: 50, height: 50, marginLeft: 10}} />
-          <img src="https://pngdownload.io/wp-content/uploads/2023/12/CSS-Logo-PNG-Symbol-for-Web-Development-Transparent-jpg.webp" alt="TypeScript" style={{width: 50, height: 50, marginLeft: 10}} />
-          <img src="https://icon2.cleanpng.com/20180810/ekz/11448a7a96ee808a3cdbaf0df9570976.webp" alt="TypeScript" style={{width: 50, height: 50, marginLeft: 10}} />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" alt="TypeScript" style={{width: 50, height: 50, marginLeft: 10}} />
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaEsLuY93v9Am4yIBkmfduJjMzSp5LaflH0w&s" alt="TypeScript" style={{width: 50, height: 50, marginLeft: 10}} />
+      <div className='skillsSection'>
+        <Marquee speed={50} gradient={false}>
+          <img src="https://www.patterns.dev/img/reactjs/react-logo@3x.svg" alt="React" style={{width: 150, height: 150, marginLeft: 10}} />
+          <img src="https://logos-world.net/wp-content/uploads/2021/08/Amazon-Web-Services-AWS-Logo.png" alt="AWS" style={{width: 150, height: 150, marginLeft: 10}} />
+          <img src="https://e7.pngegg.com/pngimages/780/934/png-clipart-html-logo-html5-logo-icons-logos-emojis-tech-companies-thumbnail.png" alt="TypeScript" style={{width: 150, height: 150, marginLeft: 10}} />
+          <img src="https://pngdownload.io/wp-content/uploads/2023/12/CSS-Logo-PNG-Symbol-for-Web-Development-Transparent-jpg.webp" alt="TypeScript" style={{width: 150, height: 150, marginLeft: 10}} />
+          <img src="https://icon2.cleanpng.com/20180810/ekz/11448a7a96ee808a3cdbaf0df9570976.webp" alt="TypeScript" style={{width: 150, height: 150, marginLeft: 10}} />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" alt="TypeScript" style={{width: 150, height: 150, marginLeft: 10}} />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaEsLuY93v9Am4yIBkmfduJjMzSp5LaflH0w&s" alt="TypeScript" style={{width: 150, height: 150, marginLeft: 10}} />
         </Marquee>
       </div>
     </div>
