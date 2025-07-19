@@ -1,0 +1,66 @@
+.cardContainer {
+  width: 280px;
+  height: 350px;
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px 5px  rgb(220, 220, 220);
+  position: relative;
+}
+
+.cardImageContainer {
+  width: '100%';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImage {
+  width: 290px;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.cardInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cardText {
+  line-height: 5px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cardSkills {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.cardButtonContainer {
+  width: 280px;
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+
+.cardButton {
+  padding: 10px;
+  width: 120px;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+  .cardContainer {
+  }
+}

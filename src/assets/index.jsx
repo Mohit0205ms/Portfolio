@@ -8,6 +8,7 @@ export const icons = {
   contactUs_icon: require('./icons/contact_us.png'),
   menu_icon: require('./icons/menu.png'),
   logo: require('./icons/logo.png'),
+  react_logo: require('./icons/react.png'),
 }
 
 export const images = {
