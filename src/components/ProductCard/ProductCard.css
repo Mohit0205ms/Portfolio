@@ -98,7 +98,7 @@
   transition: background 0.18s, box-shadow 0.18s, color 0.18s;
 }
 
-.productCardButton.download:hover {
+.download {
   background: rgb(124, 160, 251);
   color: #fff;
 }
