@@ -21,7 +21,7 @@ const skills = [
 const SkillSection = () => {
   return (
     <section className="skillSectionContainer">
-      <h1 className="skillSectionTitle">SKILLS</h1>
+      <h1>SKILLS</h1>
       <div className="skillCardsGrid">
         {skills.map((skill, idx) => (
           <SkillCard key={idx} image={skill.image} name={skill.name} />
