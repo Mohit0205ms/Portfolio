@@ -2,19 +2,16 @@
 import Card from '../Card/Card';
 import './Section.css'
 
-const Section = () => {
+const Section = ({title}) => {
   return(
     <div className='sectionContainer'>
-      <div className='sectionHeaderContainer'>
-        <p className='sectionHeaderTitle'>PROJECTS</p>
-        <button className='sectionViewMoreButton'>View More</button>
-      </div>
+      <h1>{title}</h1>
       <div className='sectionCardContainer'>
         <Card/>
         <Card/>
         <Card/>
-        <Card/>
       </div>
+      <button className='sectionViewMoreButton'>View More</button>
     </div>
   )
 }

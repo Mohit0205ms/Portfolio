@@ -57,6 +57,104 @@ export default function HeroSection() {
             <img src={icons.react_logo} className='skillIcon'/>
             <span>React.js</span>
           </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon'/>
+            <span>React.js</span>
+          </div>
+        </Marquee>
+        <Marquee direction='right' speed={50} gradient={false} style={{marginTop:20}}>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 20}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
+          <div className='skillContainer'>
+            <img src={icons.react_logo} className='skillIcon' style={{marginLeft: 5}}/>
+            <span>React.js</span>
+          </div>
         </Marquee>
       </div>
     </div>

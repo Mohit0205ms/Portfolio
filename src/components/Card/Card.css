@@ -60,7 +60,9 @@
   border-radius: 20px;
 }
 
-@media (min-width: 768px) {
-  .cardContainer {
+@media (min-width: 1024px) {
+  .cardContainer{
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
