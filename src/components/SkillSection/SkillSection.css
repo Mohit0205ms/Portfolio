@@ -1,0 +1,49 @@
+.skillSectionContainer {
+  width: 100%;
+  padding: 40px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+}
+
+.skillSectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+.skillCardsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+@media (max-width: 900px) {
+  .skillCardsGrid {
+    gap: 16px;
+    max-width: 700px;
+  }
+  .skillSectionTitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .skillSectionContainer {
+    padding: 20px 0 10px 0;
+  }
+  .skillCardsGrid {
+    gap: 10px;
+    max-width: 98vw;
+  }
+  .skillSectionTitle {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+} 

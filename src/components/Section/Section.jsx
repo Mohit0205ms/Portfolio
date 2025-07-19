@@ -4,7 +4,7 @@ import './Section.css'
 
 const Section = ({title}) => {
   return(
-    <div className='sectionContainer'>
+    <section className='sectionContainer'>
       <h1>{title}</h1>
       <div className='sectionCardContainer'>
         <Card/>
@@ -12,7 +12,7 @@ const Section = ({title}) => {
         <Card/>
       </div>
       <button className='sectionViewMoreButton'>View More</button>
-    </div>
+    </section>
   )
 }
 
