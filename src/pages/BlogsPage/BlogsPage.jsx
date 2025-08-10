@@ -48,51 +48,55 @@ const BlogsPage = () => {
   return (
     <div className="blogsPageContainer">
       <header className="blogsHeader">
-        <h1 className="blogsTitle">All Blogs</h1>
-        <p className="blogsSubtitle">Search, filter by tags, and sort your posts.</p>
+        <h1 className="blogsTitle">Insights & Articles</h1>
+        <p className="blogsSubtitle">
+          {activeTag === 'All' ? `${visibleBlogs.length} posts` : `${visibleBlogs.length} posts • ${activeTag}`}
+        </p>
       </header>
 
-      {/* Controls */}
-      <div className="blogsControls">
-        <div className="blogsSearchWrap">
-          <input
-            type="text"
-            placeholder="Search blogs..."
-            className="blogsSearchInput"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+      {/* Controls + Tags Card */}
+      <section className="blogsControlsCard">
+        <div className="blogsControls">
+          <div className="blogsSearchWrap">
+            <input
+              type="text"
+              placeholder="Search blogs..."
+              className="blogsSearchInput"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </div>
+          <div className="blogsSortWrap">
+            <label className="sortLabel">Sort:</label>
+            <select className="sortSelect" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option>Newest</option>
+              <option>Oldest</option>
+              <option>Shortest Read</option>
+              <option>Longest Read</option>
+            </select>
+          </div>
         </div>
-        <div className="blogsSortWrap">
-          <label className="sortLabel">Sort:</label>
-          <select className="sortSelect" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option>Newest</option>
-            <option>Oldest</option>
-            <option>Shortest Read</option>
-            <option>Longest Read</option>
-          </select>
+        <div className="blogsTags">
+          {tags.map(tag => (
+            <button
+              key={tag}
+              className={`tagChip ${activeTag === tag ? 'active' : ''}`}
+              onClick={() => setActiveTag(tag)}
+            >
+              {tag}
+            </button>
+          ))}
         </div>
-      </div>
+      </section>
 
-      {/* Tags */}
-      <div className="blogsTags">
-        {tags.map(tag => (
-          <button
-            key={tag}
-            className={`tagChip ${activeTag === tag ? 'active' : ''}`}
-            onClick={() => setActiveTag(tag)}
-          >
-            {tag}
-          </button>
-        ))}
-      </div>
-
-      {/* Grid */}
-      <div className="blogsGrid">
-        {visibleBlogs.map((b, idx) => (
-          <BlogCard key={`${b.title}-${idx}`} image={b.image} title={b.title} description={`${b.description} (${b.readTime} min read)`} />
-        ))}
-      </div>
+      {/* Grid Card */}
+      <section className="blogsGridCard">
+        <div className="blogsGrid">
+          {visibleBlogs.map((b, idx) => (
+            <BlogCard key={`${b.title}-${idx}`} image={b.image} title={b.title} description={`${b.description} (${b.readTime} min read)`} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
