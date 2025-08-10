@@ -1,0 +1,39 @@
+.blogsPageContainer{
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.blogsHeader{ margin-bottom: 16px; }
+.blogsTitle{ font-size: 2rem; letter-spacing: 1px; margin: 0 0 6px 0; }
+.blogsSubtitle{ color:#666; margin:0; }
+
+.blogsControls{
+  display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+  margin: 16px 0 12px 0;
+}
+.blogsSearchWrap{ flex:1 1 320px; min-width:0; display:flex; }
+.blogsSearchInput{
+  width:100%; max-width:100%; min-width:0; box-sizing:border-box;
+  padding:10px 12px; border:1px solid #bdbdbd; border-radius:14px; background:#fafafa;
+}
+.blogsSortWrap{ display:flex; align-items:center; gap:8px; }
+.sortLabel{ color:#555; }
+.sortSelect{ padding:8px 10px; border-radius:10px; border:1px solid #bdbdbd; background:#fff; }
+
+.blogsTags{
+  display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 16px;
+}
+.tagChip{
+  padding:8px 12px; border-radius:999px; border:1px solid #e0e0e0; background:#fff; cursor:pointer;
+  transition: all .2s ease; font-size:.9rem;
+}
+.tagChip:hover{ transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.06); }
+.tagChip.active{ background:#111; color:#fff; border-color:#111; }
+
+.blogsGrid{
+  display:flex; flex-wrap:wrap; gap:18px; justify-content:flex-start; padding: 8px 2px;
+}
+
+@media (max-width: 768px){
+  .blogsTitle{ font-size:1.6rem; }
+}

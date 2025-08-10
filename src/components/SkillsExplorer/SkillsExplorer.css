@@ -1,0 +1,183 @@
+/* Container */
+.skillsExplorerContainer {
+  width: 100%;
+  padding: 40px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+}
+
+.skillsExplorerTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+/* Split Pane */
+.skillsExplorerSplitPane {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  max-width: 1100px;
+  min-height: 420px;
+}
+
+/* Left Pane (Skills) */
+.skillsListPane {
+  width: 260px;
+  min-width: 240px;
+  max-height: 62vh;
+  border: 1.5px solid black;
+  border-radius: 18px;
+  box-shadow: 6px 6px 16px 0px rgb(220, 220, 220);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+.skillsSearchBar {
+  margin-bottom: 10px;
+  display: flex;
+  min-width: 0;
+}
+
+.skillsSearchInput {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid #bdbdbd;
+  outline: none;
+  font-size: 0.98rem;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+.skillsList {
+  overflow-y: auto;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skillItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid #bdbdbd;
+  background: rgb(255, 220, 139);
+  color: #222;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.18s, transform 0.18s, box-shadow 0.18s;
+  box-shadow: 2px 2px 6px 0px rgb(220, 220, 220);
+}
+
+.skillItem:hover {
+  transform: translateY(-2px);
+}
+
+.skillItem.active {
+  background: rgb(124, 160, 251);
+  color: #fff;
+}
+
+.skillName {
+  font-size: 0.98rem;
+}
+
+.skillBadge {
+  font-size: 0.85rem;
+  background: #fff;
+  color: #222;
+  border-radius: 12px;
+  padding: 2px 8px;
+  border: 1px solid #bdbdbd;
+}
+
+/* Right Pane (Projects) */
+.projectsPane {
+  flex: 1;
+  border: 1.5px solid black;
+  border-radius: 18px;
+  box-shadow: 6px 6px 16px 0px rgb(220, 220, 220);
+  padding: 14px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  max-height: 62vh;
+  overflow-y: auto; /* scrolling on container to avoid clipping scaled children */
+}
+
+.projectsPaneHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.projectsPaneTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.clearFilterBtn {
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid black;
+  background: rgb(255, 220, 139);
+  color: black;
+  box-shadow: 2px 2px 6px 0px rgb(220, 220, 220);
+  cursor: pointer;
+}
+
+.projectsGrid {
+  overflow: visible; /* allow hover scale to show outside grid bounds */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 18px;
+  padding: 14px 6px 18px 0;
+}
+
+.emptyState {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .skillsExplorerSplitPane {
+    max-width: 700px;
+  }
+  .skillsListPane {
+    width: 220px;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 700px) {
+  .skillsExplorerSplitPane {
+    flex-direction: column;
+  }
+  .skillsListPane,
+  .projectsPane {
+    max-height: none;
+    width: 98vw;
+  }
+}

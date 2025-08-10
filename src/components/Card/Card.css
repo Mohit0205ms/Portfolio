@@ -1,68 +1,109 @@
 .cardContainer {
-  width: 280px;
-  height: 350px;
-  padding: 15px;
-  border-radius: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 1px solid black;
-  box-shadow: 5px 5px 5px 5px  rgb(220, 220, 220);
-  position: relative;
+  width: 270px;
+  min-height: 300px;
+  padding: 16px;
+  border-radius: 18px;
+  margin: 12px;
+  border: 1.5px solid black;
+  box-shadow: 6px 6px 16px 0px rgb(220, 220, 220);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  transition: transform 0.22s, box-shadow 0.28s;
+}
+
+.cardContainer:hover {
+  transform: translateY(-7px) scale(1.04);
+  box-shadow: 10px 10px 24px 0px rgb(220, 220, 220);
 }
 
 .cardImageContainer {
-  width: '100%';
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .cardImage {
-  width: 290px;
-  height: 200px;
-  border-radius: 10px;
+  width: 100%;
+  height: 130px;
+  border-radius: 12px;
   object-fit: cover;
+  border: 2px solid #e0e0e0;
+  background: #fafafa;
 }
 
 .cardInfoContainer {
+  margin-top: 16px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.cardText {
-  line-height: 5px;
-}
-
 .cardTitle {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 7px;
+  letter-spacing: 0.5px;
 }
 
 .cardSkills {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 1.01rem;
+  color: #444;
+  margin-bottom: 12px;
+  min-height: 44px;
 }
 
 .cardButtonContainer {
-  width: 280px;
   display: flex;
-  justify-content: space-evenly;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 10px;
+  width: 100%;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
 }
 
 .cardButton {
-  padding: 10px;
-  width: 120px;
-  font-size: 18px;
+  flex: 1;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
   border-radius: 20px;
+  border: 1px solid black;
+  background: rgb(255, 220, 139);
+  color: black;
+  box-shadow: 2px 2px 6px 0px rgb(220, 220, 220);
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s, color 0.18s;
 }
 
 @media (min-width: 1024px) {
   .cardContainer{
     margin-left: 10px;
     margin-right: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardContainer {
+    width: 98vw;
+    min-width: 0;
+    padding: 9px;
+  }
+  .cardImage {
+    height: 90px;
+  }
+  .cardTitle {
+    font-size: 1.05rem;
+  }
+  .cardSkills {
+    font-size: 0.92rem;
+    min-height: 28px;
+  }
+  .cardButton {
+    font-size: 0.95rem;
+    padding: 8px 0;
   }
 }

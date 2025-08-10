@@ -5,11 +5,11 @@ const Card = () => {
     <div className="cardContainer">
       {/* Card image */}
       <div className='cardImageContainer'>
-        <img src='https://www.shutterstock.com/image-vector/vision-ideas-creative-project-selection-600nw-2000850218.jpg' className='cardImage' />
+        <img src='https://www.shutterstock.com/image-vector/vision-ideas-creative-project-selection-600nw-2000850218.jpg' alt='E-Commerce project preview' className='cardImage' />
       </div>
       {/* Name */}
       <div className='cardInfoContainer'>
-        <p className='cardText cardTitle'>E-Commerce</p>
+        <p className='cardTitle'>E-Commerce</p>
         <p className='cardSkills'>React, MogoDB, Express, Node.js,</p>
       </div>
       <div className='cardButtonContainer'>

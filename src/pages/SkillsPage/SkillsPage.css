@@ -1,0 +1,76 @@
+/* Page container */
+.skillsPageContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+}
+
+.skillsPageHeader {
+  width: 100%;
+  padding: 36px 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skillsPageTitle {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #222;
+}
+
+.skillsPageSubtitle {
+  margin-top: 8px;
+  color: #555;
+}
+
+.sectionHeading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 12px;
+}
+
+/* Trending */
+.trendingSkillsSection {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 0 8px 0;
+}
+
+.trendingChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.trendingChip {
+  background: rgb(255, 220, 139);
+  color: #222;
+  border: 1px solid black;
+  border-radius: 18px;
+  padding: 6px 12px;
+  font-weight: 600;
+  box-shadow: 2px 2px 6px 0px rgb(220, 220, 220);
+}
+
+/* Recent Projects */
+.recentProjectsSection {
+  width: 100%;
+  max-width: 1100px;
+  padding: 18px 0 36px 0;
+}
+
+.recentProjectsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .skillsPageTitle {
+    font-size: 1.7rem;
+  }
+}

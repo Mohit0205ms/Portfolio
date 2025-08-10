@@ -1,6 +1,7 @@
 import React from 'react';
 import BlogCard from '../BlogCard/BlogCard';
 import './BlogSection.css';
+import { useNavigate } from 'react-router-dom';
 
 const blogs = [
   {
@@ -26,6 +27,7 @@ const blogs = [
 ];
 
 const BlogSection = () => {
+  const navigate = useNavigate();
   return (
     <section className="blogSectionContainer">
       <h1 className="blogSectionTitle">BLOGS</h1>
@@ -34,7 +36,7 @@ const BlogSection = () => {
           <BlogCard key={idx} image={blog.image} title={blog.title} description={blog.description} />
         ))}
       </div>
-      <button className="sectionViewMoreButton">View More</button>
+      <button className="sectionViewMoreButton" onClick={() => navigate('/blogs')}>View More</button>
     </section>
   );
 };
