@@ -1,11 +1,19 @@
+// Icons
 import downloadIcon from './icons/download.png';
 import logo from './icons/logo.png';
 import menuIcon from './icons/menu.png';
 import closeIcon from './icons/close.png';
+
+// Images
+import heroBannerImage from './images/hero_banner.png';
 
 export const icons = {
   download: downloadIcon,
   logo: logo,
   menu: menuIcon,
   close: closeIcon,
+}
+
+export const images = {
+  heroBanner: heroBannerImage,
 }
