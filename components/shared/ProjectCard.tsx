@@ -1,11 +1,17 @@
+'use client';
+
 import { icons } from '@/assets';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface ProjectCardProps {
   index: number;
   image: string;
   name: string;
   description: string;
+  demoUrl?: string;
+  githubUrl?: string;
+  liveUrl?: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -13,7 +19,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   image,
   name,
   description,
+  demoUrl,
+  githubUrl,
+  liveUrl,
 }) => {
+  const [isCardHovered, setIsCardHovered] = useState(false);
+  const [isCardClicked, setIsCardClicked] = useState(false);
+  const [isImageHovered, setIsImageHovered] = useState(false);
+  const [isImageClicked, setIsImageClicked] = useState(false);
+
   // Format index to always be two digits
   const formattedIndex = index.toString().padStart(2, '0');
 
@@ -24,15 +38,68 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     <div
       className={`flex flex-col ${
         isReversed ? 'md:flex-row-reverse' : 'md:flex-row'
-      } md:items-center gap-8 md:gap-12 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 mb-6`}
+      } md:items-center gap-8 md:gap-12 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 mb-6 relative cursor-pointer ${
+        (isCardHovered || isCardClicked) ? 'transform scale-105' : ''
+      }`}
+      onMouseEnter={() => setIsCardHovered(true)}
+      onMouseLeave={() => setIsCardHovered(false)}
+      onClick={() => setIsCardClicked(!isCardClicked)}
     >
       {/* Image Section */}
-      <div className='flex-1 max-w-xs'>
+      <div
+        className='flex-1 max-w-xs relative'
+        onMouseEnter={() => setIsImageHovered(true)}
+        onMouseLeave={() => setIsImageHovered(false)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsImageClicked(!isImageClicked);
+        }}
+      >
         <img
           src={image}
           alt={`${name}`}
-          className='w-full aspect-square object-cover rounded-lg'
+          className={`w-full aspect-square object-cover rounded-lg transition-all duration-300 cursor-pointer ${
+            (isImageHovered || isImageClicked) ? 'blur-sm scale-105' : ''
+          }`}
         />
+
+        {/* Hover Buttons Overlay */}
+        {(isImageHovered || isImageClicked) && (
+          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm rounded-lg transition-all duration-300">
+            <div className="flex gap-3 transform transition-all duration-500 ease-out animate-fade-in">
+              {demoUrl && (
+                <a
+                  href={demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-110 hover:shadow-lg shadow-blue-500/25"
+                >
+                  Demo
+                </a>
+              )}
+              {githubUrl && (
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-110 hover:shadow-lg shadow-gray-500/25"
+                >
+                  GitHub
+                </a>
+              )}
+              {liveUrl && (
+                <a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-110 hover:shadow-lg shadow-green-500/25"
+                >
+                  Live
+                </a>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Content Section */}
