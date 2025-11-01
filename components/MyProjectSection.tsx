@@ -1,4 +1,5 @@
 import ProjectCard from './shared/ProjectCard';
+import AnimatedSection from './shared/AnimatedSection';
 
 const MyProjectSection = () => {
   const projects = [
@@ -44,25 +45,26 @@ const MyProjectSection = () => {
     <section id="projects" className="py-20 px-6 bg-black">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl text-gray-900 dark:text-white mb-4">
             My <span className='font-extrabold'>Projects</span>
           </h2>
-        </div>
+        </AnimatedSection>
 
         {/* Projects Grid */}
         <div className="space-y-12">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.index}
-              index={project.index}
-              image={project.image}
-              name={project.name}
-              description={project.description}
-              demoUrl={project.demoUrl}
-              githubUrl={project.githubUrl}
-              liveUrl={project.liveUrl}
-            />
+          {projects.map((project, index) => (
+            <AnimatedSection key={project.index} delay={index * 0.1}>
+              <ProjectCard
+                index={project.index}
+                image={project.image}
+                name={project.name}
+                description={project.description}
+                demoUrl={project.demoUrl}
+                githubUrl={project.githubUrl}
+                liveUrl={project.liveUrl}
+              />
+            </AnimatedSection>
           ))}
         </div>
 
