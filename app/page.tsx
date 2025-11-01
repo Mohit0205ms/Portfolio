@@ -1,4 +1,5 @@
 import AboutMeSection from '@/components/AboutMeSection';
+import ContactMeSection from '@/components/ContactMeSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import HeroSection from '@/components/HeroSection';
 import MyProjectSection from '@/components/MyProjectSection';
@@ -20,6 +21,11 @@ export default function Home() {
       <ExperienceSection />
       <AboutMeSection starting={starting} middle={middle} ending={ending} />
       <MyProjectSection/>
+      <ContactMeSection
+        description="I'm always open to discussing product design work or partnership opportunities. Whether you have a project in mind or just want to chat about design and development, feel free to reach out."
+        email="hello@mohitsingh.dev"
+        phoneNumber="+91 98765 43210"
+      />
     </div>
   );
 }
