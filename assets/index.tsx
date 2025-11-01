@@ -8,6 +8,7 @@ import workExperienceIcon from './icons/work_education.png';
 
 // Images
 import heroBannerImage from './images/hero_banner.png';
+import aboutMeImage from './images/about_me.png';
 
 export const icons = {
   download: downloadIcon,
@@ -20,4 +21,5 @@ export const icons = {
 
 export const images = {
   heroBanner: heroBannerImage,
+  aboutMe: aboutMeImage
 }
