@@ -18,7 +18,7 @@ const ContactMeSection = ({
   const strokeThickness = width <= 1004 ? '1.5px' : '2px';
 
   return (
-    <div className='flex justify-center py-8 sm:py-12 lg:py-16'>
+    <div id='contact' className='flex justify-center py-8 sm:py-12 lg:py-16'>
       <div className='max-w-7xl px-4 sm:px-6 lg:px-8 w-full'>
         <div className='flex flex-col lg:flex-row gap-8 lg:gap-16'>
           {/* Left section - Contact Form */}

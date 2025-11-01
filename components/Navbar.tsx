@@ -27,16 +27,22 @@ const Navbar = () => {
             {/* Desktop and Tablet Menu */}
             <div className='hidden md:flex items-center space-x-8'>
               <a
-                href='#about'
-                className='text-black font-semibold hover:text-gray-600 transition-colors'
-              >
-                About Me
-              </a>
-              <a
                 href='#skills'
                 className='text-black font-semibold hover:text-gray-600 transition-colors'
               >
                 Skills
+              </a>
+              <a
+                href='#experience'
+                className='text-black font-semibold hover:text-gray-600 transition-colors'
+              >
+                Experience
+              </a>
+              <a
+                href='#about'
+                className='text-black font-semibold hover:text-gray-600 transition-colors'
+              >
+                About Me
               </a>
               <a
                 href='#projects'
