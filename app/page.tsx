@@ -1,6 +1,7 @@
 import AboutMeSection from '@/components/AboutMeSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import HeroSection from '@/components/HeroSection';
+import MyProjectSection from '@/components/MyProjectSection';
 import SkillSection from '@/components/SkillSection';
 import ToggleButton from '@/components/shared/ToogleButton';
 import Image from 'next/image';
@@ -18,6 +19,7 @@ export default function Home() {
       <SkillSection />
       <ExperienceSection />
       <AboutMeSection starting={starting} middle={middle} ending={ending} />
+      <MyProjectSection/>
     </div>
   );
 }

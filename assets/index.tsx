@@ -5,6 +5,7 @@ import menuIcon from './icons/menu.png';
 import closeIcon from './icons/close.png';
 import educationIcon from './icons/education.png';
 import workExperienceIcon from './icons/work_education.png';
+import readMoreIcon from './icons/read_more.png';
 
 // Images
 import heroBannerImage from './images/hero_banner.png';
@@ -16,7 +17,8 @@ export const icons = {
   menu: menuIcon,
   close: closeIcon,
   education: educationIcon,
-  Work: workExperienceIcon
+  Work: workExperienceIcon,
+  readMore: readMoreIcon
 }
 
 export const images = {
