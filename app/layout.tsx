@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { ModalProvider } from "@/contexts/ModalContext";
@@ -32,7 +31,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ModalProvider>
-          <Navbar/>
           {children}
           <FooterSection/>
           <ScrollToTopButton/>

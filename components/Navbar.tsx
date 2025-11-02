@@ -5,7 +5,13 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useModal } from '@/contexts/ModalContext';
 
-const Navbar = () => {
+interface NavbarProps {
+  home?: {
+    resume: string;
+  };
+}
+
+const Navbar = ({ home }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { openResumeModal } = useModal();
 
@@ -16,7 +22,17 @@ const Navbar = () => {
   };
 
   const handleResumeClick = () => {
-    openResumeModal('https://drive.google.com/file/d/1EXAMPLE/preview', 'Mohit Singh');
+    let resumeUrl = home?.resume?.trim() || 'https://drive.google.com/file/d/1EXAMPLE/preview';
+
+    // Convert Google Drive sharing link to preview link if needed
+    if (resumeUrl.includes('drive.google.com/file/d/') && !resumeUrl.includes('/preview')) {
+      const fileId = resumeUrl.split('/d/')[1]?.split('/')[0];
+      if (fileId) {
+        resumeUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+      }
+    }
+
+    openResumeModal(resumeUrl, 'Mohit Singh');
   };
 
   return (

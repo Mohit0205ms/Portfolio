@@ -15,7 +15,8 @@ export async function getPortfolioData() {
     "education": *[_type == "education"] | order(_createdAt desc),
     "projects": *[_type == "projects"] | order(priority desc, _createdAt desc),
     "skills": *[_type == "mySkills"] | order(_createdAt desc),
-    "socialLinks": *[_type == "socialLinks"] | order(_createdAt desc)
+    "socialLinks": *[_type == "socialLinks"] | order(_createdAt desc),
+    "home": *[_type == "home"][0]
   }`);
 }
 

@@ -18,13 +18,35 @@ interface SocialLinkData {
   isActive: boolean;
 }
 
-interface HeroSectionProps {
-  socialLinks: SocialLinkData[];
+interface HomeData {
+  description: any[];
+  resume: string;
 }
 
-const HeroSection = ({ socialLinks }: HeroSectionProps) => {
+interface HeroSectionProps {
+  socialLinks: SocialLinkData[];
+  home: HomeData;
+}
+
+const HeroSection = ({ socialLinks, home }: HeroSectionProps) => {
   const { width } = useWindowDimensions();
   const strokeThickness = width <= 1004 ? '1.5px' : '2px';
+
+  // Helper function to convert Sanity rich text to plain text
+  const convertRichTextToString = (blocks: any[]): string => {
+    if (!blocks || !Array.isArray(blocks)) return '';
+
+    return blocks
+      .map(block => {
+        if (block._type === 'block' && block.children) {
+          return block.children
+            .map((child: any) => child.text || '')
+            .join('');
+        }
+        return '';
+      })
+      .join('\n\n');
+  };
 
   // Transform Sanity data to match SocialLinkCard props
   const transformedSocialLinks = socialLinks
@@ -35,6 +57,9 @@ const HeroSection = ({ socialLinks }: HeroSectionProps) => {
       profileUrl: link.url,
       isAlternate: index % 2 === 1,
     }));
+
+  // Get description from home data
+  const heroDescription = convertRichTextToString(home.description);
   return (
     <div className='flex justify-center'>
       <div className='max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-16'>
@@ -72,10 +97,7 @@ const HeroSection = ({ socialLinks }: HeroSectionProps) => {
             </div>
             <AnimatedSection delay={0.2} className='mb-6'>
               <span className='text-zinc-500 text-base leading-6'>
-                I'm Evren Shah Lorem Ipsum is simply dummy text of the printing
-                and typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to specimen book.
+                {heroDescription}
               </span>
             </AnimatedSection>
             <AnimatedSection delay={0.25}>

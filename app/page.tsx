@@ -4,12 +4,14 @@ import ExperienceSection from '@/components/ExperienceSection';
 import HeroSection from '@/components/HeroSection';
 import MyProjectSection from '@/components/MyProjectSection';
 import SkillSection from '@/components/SkillSection';
+import Navbar from '@/components/Navbar';
 import { getPortfolioData } from '@/lib/sanity';
 
-function HomeContent({ skills, experience, education, projects, aboutMe, socialLinks }: { skills: any[]; experience: any[]; education: any[]; projects: any[]; aboutMe: any; socialLinks: any[] }) {
+function HomeContent({ skills, experience, education, projects, aboutMe, socialLinks, home }: { skills: any[]; experience: any[]; education: any[]; projects: any[]; aboutMe: any; socialLinks: any[]; home: any }) {
   return (
     <div className='min-h-screen bg-white'>
-      <HeroSection socialLinks={socialLinks} />
+      <Navbar home={home} />
+      <HeroSection socialLinks={socialLinks} home={home} />
       <SkillSection skills={skills} />
       <ExperienceSection experiences={experience} education={education} />
       <AboutMeSection aboutMe={aboutMe} />
@@ -32,6 +34,7 @@ export default async function Home() {
   const projects = data.projects;
   const aboutMe = data.aboutMe;
   const socialLinks = data.socialLinks;
-  console.log("experience: ", socialLinks);
-  return <HomeContent skills={skills} experience={experience} education={education} projects={projects} aboutMe={aboutMe} socialLinks={socialLinks} />;
+  const home = data.home;
+  console.log("experience: ", home);
+  return <HomeContent skills={skills} experience={experience} education={education} projects={projects} aboutMe={aboutMe} socialLinks={socialLinks} home={home} />;
 }

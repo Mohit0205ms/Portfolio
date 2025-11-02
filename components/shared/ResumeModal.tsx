@@ -31,12 +31,44 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, resumeUrl, t
   if (!isOpen) return null;
 
   const handleDownload = () => {
+    // For Google Drive links, convert to direct download link
+    if (resumeUrl.includes('drive.google.com')) {
+      let fileId = '';
+
+      if (resumeUrl.includes('/preview')) {
+        fileId = resumeUrl.split('/d/')[1]?.split('/')[0];
+      } else if (resumeUrl.includes('/view')) {
+        fileId = resumeUrl.split('/d/')[1]?.split('/')[0];
+      }
+
+      if (fileId) {
+        // Use the direct download URL that triggers browser download
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        return;
+      }
+    }
+
+    // For other URLs, try to download directly or open in new tab
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.download = `${title}-Resume.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    link.target = '_blank';
+
+    // Check if download is supported
+    if (typeof link.download !== 'undefined') {
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      // Fallback for browsers that don't support download attribute
+      window.open(resumeUrl, '_blank');
+    }
   };
 
   return (
