@@ -1,73 +1,118 @@
+'use client';
+
 import ExperienceCard from './shared/ExperienceCard';
 import ToggleButton from './shared/ToogleButton';
 import AnimatedSection from './shared/AnimatedSection';
+import { urlFor } from '@/lib/sanity';
+import { useState } from 'react';
 
-const ExperienceSection = () => {
-  const experiences = [
-    {
-      icon: 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png',
-      position: 'Software Developer Engineer',
-      from: 'Nov 2025',
-      to: 'Present',
-      name: 'Google',
-      location: 'Gurugram, Haryane, India',
-      isAlternate: false,
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    },
-    {
-      icon: 'https://png.pngtree.com/png-clipart/20181003/ourmid/pngtree-facebook-logo-facebook-icon-png-image_3654755.png',
-      position: 'Software Developer Engineer',
-      from: 'Nov 2025',
-      to: 'Present',
-      name: 'FaceBook',
-      location: 'Gurugram, Haryane, India',
-      isAlternate: true,
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    },
-    {
-      icon: 'https://pngdownload.io/wp-content/uploads/2023/12/YouTube-Logo-PNG-Symbol-for-Video-Platform-Transparent-jpg.webp',
-      position: 'Software Developer Engineer',
-      from: 'Nov 2025',
-      to: 'Present',
-      name: 'Youtube',
-      location: 'Gurugram, Haryane, India',
-      isAlternate: false,
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    },
-    {
-      name: 'Youtube',
-      position: 'Software Developer Engineer',
-      from: 'Nov 2025',
-      to: 'Present',
-      isAlternate: true,
-      location: 'Gurugram, Haryane, India',
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    }
-  ];
+interface ExperienceData {
+  _id: string;
+  position: string;
+  organization: string;
+  from: string;
+  to: string;
+  location: string;
+  description: any[];
+  image?: {
+    asset: {
+      _ref: string;
+    };
+  };
+}
+
+interface EducationData {
+  _id: string;
+  name: string;
+  institute: string;
+  from: string;
+  to: string;
+  location: string;
+  marks: string;
+  description: any[];
+}
+
+interface ExperienceSectionProps {
+  experiences: ExperienceData[];
+  education: EducationData[];
+}
+
+const ExperienceSection = ({ experiences, education }: ExperienceSectionProps) => {
+  const [activeTab, setActiveTab] = useState('work');
+
+  // Helper function to convert Sanity rich text to plain text
+  const convertRichTextToString = (blocks: any[]): string => {
+    if (!blocks || !Array.isArray(blocks)) return '';
+
+    return blocks
+      .map(block => {
+        if (block._type === 'block' && block.children) {
+          return block.children
+            .map((child: any) => child.text || '')
+            .join('');
+        }
+        return '';
+      })
+      .join('\n\n');
+  };
+
+  // Transform experience data to match ExperienceCard props
+  const transformedExperiences = experiences.map((exp, index) => ({
+    id: exp._id,
+    name: exp.organization,
+    position: exp.position,
+    from: exp.from,
+    to: exp.to,
+    location: exp.location,
+    description: convertRichTextToString(exp.description),
+    icon: exp.image ? urlFor(exp.image).url() : '',
+    isAlternate: index % 2 === 1,
+  }));
+
+  // Transform education data to match ExperienceCard props
+  const transformedEducation = education.map((edu, index) => ({
+    id: edu._id,
+    name: edu.institute,
+    position: `${edu.name} (${edu.marks})`,
+    from: edu.from,
+    to: edu.to,
+    location: edu.location,
+    description: convertRichTextToString(edu.description),
+    icon: '',
+    isAlternate: index % 2 === 1,
+  }));
+
+  // Get current data based on active tab
+  const currentData = activeTab === 'work' ? transformedExperiences : transformedEducation;
+  const sectionTitle = activeTab === 'work' ? 'Experience' : 'Education';
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+  };
 
   return (
     <section id="experience" className="py-6 px-4 sm:px-6 lg:px-8 bg-black mt-6">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
           <h2 className="text-center mt-6 text-3xl md:text-4xl text-white mb-6">
-            My <span className="font-extrabold">Experience</span>
+            My <span className="font-extrabold">{sectionTitle}</span>
           </h2>
         </AnimatedSection>
         <AnimatedSection delay={0.1}>
-          <ToggleButton/>
+          <ToggleButton onChange={handleTabChange} />
         </AnimatedSection>
         <div className="max-w-4xl mx-auto space-y-6">
-          {experiences.map((exp, index) => (
-            <AnimatedSection key={index} delay={0.15 + index * 0.1}>
+          {currentData.map((item, index) => (
+            <AnimatedSection key={item.id} delay={0.15 + index * 0.1}>
               <ExperienceCard
-                icon={exp.icon}
-                position={exp.position}
-                from={exp.from}
-                to={exp.to}
-                name={exp.name}
-                location={exp.location}
-                isAlternate={exp.isAlternate}
-                description={exp.description}
+                icon={item.icon}
+                position={item.position}
+                from={item.from}
+                to={item.to}
+                name={item.name}
+                location={item.location}
+                isAlternate={item.isAlternate}
+                description={item.description}
               />
             </AnimatedSection>
           ))}

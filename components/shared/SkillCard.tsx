@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const SkillCard = ({
   name = '',
-  icon = 'https://img.icons8.com/?size=60&id=118466&format=png',
+  icon = '',
   profileUrl,
   isAlternate = false,
 }: {
@@ -26,7 +26,7 @@ const SkillCard = ({
           alt={name}
           width={56}
           height={56}
-          className={`${isAlternate ? 'filter invert' : ''}`}
+          className={`${isAlternate ? 'filter invert' : 'filter brightness-0'}`}
         />
         <span className={`text-bold text-center ${isAlternate ? 'text-white' : 'text-black'}`}>{name}</span>
       </a>

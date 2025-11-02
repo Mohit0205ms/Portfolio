@@ -3,14 +3,20 @@ import { icons } from '@/assets';
 import { useWindowDimensions } from '@/hooks/dimensions';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useModal } from '@/contexts/ModalContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openResumeModal } = useModal();
 
   const { width } = useWindowDimensions();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleResumeClick = () => {
+    openResumeModal('https://drive.google.com/file/d/1EXAMPLE/preview', 'Mohit Singh');
   };
 
   return (
@@ -60,8 +66,8 @@ const Navbar = () => {
 
             {/* Resume Button */}
             <div className='flex items-center'>
-              <a
-                href='/resume.pdf'
+              <button
+                onClick={handleResumeClick}
                 className='flex bg-black text-white items-center gap-2 px-4 py-2 rounded-md font-semibold hover:bg-gray-800 transition-colors mr-4'
               >
                 <span>Resume</span>
@@ -71,7 +77,7 @@ const Navbar = () => {
                   width={20}
                   height={20}
                 />
-              </a>
+              </button>
 
               {/* Mobile Menu Button */}
               <button

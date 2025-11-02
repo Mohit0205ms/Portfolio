@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useModal } from '@/contexts/ModalContext';
 
 const ScrollToTopButton = () => {
+  const { isModalOpen } = useModal();
   const [isVisible, setIsVisible] = useState(false);
 
   // Show button when page is scrolled up to given distance
@@ -34,8 +36,13 @@ const ScrollToTopButton = () => {
     <>
       {isVisible && (
         <button
-          onClick={scrollToTop}
-          className='fixed bottom-8 right-8 z-50 p-3 bg-gray-800/90 text-white border border-gray-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+          onClick={isModalOpen ? undefined : scrollToTop}
+          disabled={isModalOpen}
+          className={`fixed bottom-8 right-8 z-50 p-3 bg-gray-800/90 text-white border border-gray-600 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+            isModalOpen
+              ? 'blur-sm opacity-50 cursor-not-allowed'
+              : 'hover:scale-110'
+          }`}
           aria-label='Scroll to top'
         >
           <svg

@@ -2,15 +2,36 @@ import { images } from '@/assets';
 import Image from 'next/image';
 import AnimatedSection from './shared/AnimatedSection';
 
-const AboutMeSection = ({
-  starting,
-  middle,
-  ending,
-}: {
-  starting: string;
-  middle: string;
-  ending: string;
-}) => {
+interface AboutMeData {
+  starting: any[];
+  middle: any[];
+  ending: any[];
+}
+
+interface AboutMeSectionProps {
+  aboutMe: AboutMeData;
+}
+
+const AboutMeSection = ({ aboutMe }: AboutMeSectionProps) => {
+  // Helper function to convert Sanity rich text to plain text
+  const convertRichTextToString = (blocks: any[]): string => {
+    if (!blocks || !Array.isArray(blocks)) return '';
+
+    return blocks
+      .map(block => {
+        if (block._type === 'block' && block.children) {
+          return block.children
+            .map((child: any) => child.text || '')
+            .join('');
+        }
+        return '';
+      })
+      .join('\n\n');
+  };
+
+  const starting = convertRichTextToString(aboutMe.starting);
+  const middle = convertRichTextToString(aboutMe.middle);
+  const ending = convertRichTextToString(aboutMe.ending);
   return (
     <div id='about' className='flex justify-center bg-gray-50 py-16'>
       <div className='max-w-7xl px-4 sm:px-6 lg:px-8'>

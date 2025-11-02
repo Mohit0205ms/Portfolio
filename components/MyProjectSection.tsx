@@ -1,45 +1,54 @@
+'use client';
+
 import ProjectCard from './shared/ProjectCard';
 import AnimatedSection from './shared/AnimatedSection';
+import VideoModal from './shared/VideoModal';
+import ResumeModal from './shared/ResumeModal';
+import { useModal } from '@/contexts/ModalContext';
 
-const MyProjectSection = () => {
-  const projects = [
-    {
-      index: 1,
-      image: 'https://projectsly.com/images/blog/best-project-design.png?v=1686553999071005322',
-      name: 'Crypto Screener Application',
-      description: "I'm Evren Shah Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to specimen book.",
-      demoUrl: 'https://example.com/crypto-demo',
-      githubUrl: 'https://github.com/username/crypto-screener',
-      liveUrl: 'https://crypto-screener-app.com'
-    },
-    {
-      index: 2,
-      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&h=300&fit=crop',
-      name: 'E-Commerce Platform',
-      description: "A full-stack e-commerce solution built with React and Node.js. Features include user authentication, payment integration, inventory management, and responsive design for mobile and desktop users.",
-      demoUrl: 'https://example.com/ecommerce-demo',
-      githubUrl: 'https://github.com/username/ecommerce-platform',
-      liveUrl: 'https://my-ecommerce-store.com'
-    },
-    {
-      index: 3,
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop',
-      name: 'Task Management App',
-      description: "A collaborative task management application with real-time updates, team collaboration features, and intuitive drag-and-drop interface. Built using modern web technologies for optimal performance.",
-      demoUrl: 'https://example.com/taskapp-demo',
-      githubUrl: 'https://github.com/username/task-management',
-      liveUrl: 'https://taskmanager-app.com'
-    },
-    {
-      index: 4,
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
-      name: 'Weather Dashboard',
-      description: "A responsive weather dashboard that provides real-time weather information, forecasts, and interactive maps. Integrates with multiple weather APIs for accurate and up-to-date data.",
-      demoUrl: 'https://example.com/weather-demo',
-      githubUrl: 'https://github.com/username/weather-dashboard',
-      liveUrl: 'https://weather-dashboard.com'
-    }
-  ];
+interface ProjectData {
+  _id: string;
+  name: string;
+  description: any[];
+  githubLink: string;
+  priority: number;
+}
+
+interface MyProjectSectionProps {
+  projects: ProjectData[];
+}
+
+const MyProjectSection = ({ projects }: MyProjectSectionProps) => {
+  const { isModalOpen, isResumeModalOpen, openModal, closeModal, closeResumeModal, currentVideo, currentResume } = useModal();
+
+  // Helper function to convert Sanity rich text to plain text
+  const convertRichTextToString = (blocks: any[]): string => {
+    if (!blocks || !Array.isArray(blocks)) return '';
+
+    return blocks
+      .map(block => {
+        if (block._type === 'block' && block.children) {
+          return block.children
+            .map((child: any) => child.text || '')
+            .join('');
+        }
+        return '';
+      })
+      .join('\n\n');
+  };
+
+  // Transform Sanity data to match ProjectCard props
+  const transformedProjects = projects
+    .sort((a, b) => a.priority - b.priority) // Sort by priority
+    .map((project, index) => ({
+      index: index + 1,
+      image: 'https://projectsly.com/images/blog/best-project-design.png?v=1686553999071005322', // Default image since Sanity doesn't have images
+      name: project.name,
+      description: convertRichTextToString(project.description),
+      demoUrl: '', // No demo URL in Sanity data
+      githubUrl: project.githubLink,
+      liveUrl: '', // No live URL in Sanity data
+    }));
 
   return (
     <section id="projects" className="py-20 px-6 bg-black">
@@ -53,7 +62,7 @@ const MyProjectSection = () => {
 
         {/* Projects Grid */}
         <div className="space-y-12">
-          {projects.map((project, index) => (
+          {transformedProjects.map((project, index) => (
             <AnimatedSection key={project.index} delay={index * 0.1}>
               <ProjectCard
                 index={project.index}
@@ -63,6 +72,7 @@ const MyProjectSection = () => {
                 demoUrl={project.demoUrl}
                 githubUrl={project.githubUrl}
                 liveUrl={project.liveUrl}
+                onOpenModal={openModal}
               />
             </AnimatedSection>
           ))}
@@ -75,6 +85,26 @@ const MyProjectSection = () => {
           </button>
         </div> */}
       </div>
+
+      {/* Video Modal */}
+      {currentVideo && (
+        <VideoModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          videoUrl={currentVideo.url}
+          title={currentVideo.title}
+        />
+      )}
+
+      {/* Resume Modal */}
+      {currentResume && (
+        <ResumeModal
+          isOpen={isResumeModalOpen}
+          onClose={closeResumeModal}
+          resumeUrl={currentResume.url}
+          title={currentResume.title}
+        />
+      )}
     </section>
   );
 };

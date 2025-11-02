@@ -2,20 +2,45 @@
 import { useWindowDimensions } from '@/hooks/dimensions';
 import SocialLinkCard from './shared/SocialLinkCard';
 import AnimatedSection from './shared/AnimatedSection';
+import { urlFor } from '@/lib/sanity';
+
+interface SocialLinkData {
+  _id: string;
+  platform: string;
+  url: string;
+  icon: {
+    asset: {
+      _ref: string;
+    };
+  };
+  isActive: boolean;
+}
 
 interface ContactMeSectionProps {
   description: string;
   email: string;
   phoneNumber: string;
+  socialLinks: SocialLinkData[];
 }
 
 const ContactMeSection = ({
   description,
   email,
   phoneNumber,
+  socialLinks,
 }: ContactMeSectionProps) => {
   const { width } = useWindowDimensions();
   const strokeThickness = width <= 1004 ? '1.5px' : '2px';
+
+  // Transform Sanity data to match SocialLinkCard props
+  const transformedSocialLinks = socialLinks
+    .filter(link => link.isActive)
+    .map((link, index) => ({
+      name: link.platform,
+      icon: urlFor(link.icon).url(),
+      profileUrl: link.url,
+      isAlternate: index % 2 === 1,
+    }));
 
   return (
     <div id='contact' className='flex justify-center py-8 sm:py-12 lg:py-16'>
@@ -68,10 +93,15 @@ const ContactMeSection = ({
                   </button>
 
                   <div className='flex justify-center sm:justify-start space-x-4'>
-                    <SocialLinkCard />
-                    <SocialLinkCard isAlternate />
-                    <SocialLinkCard />
-                    <SocialLinkCard isAlternate />
+                    {transformedSocialLinks.map((link, index) => (
+                      <SocialLinkCard
+                        key={link.name}
+                        name={link.name}
+                        icon={link.icon}
+                        profileUrl={link.profileUrl}
+                        isAlternate={link.isAlternate}
+                      />
+                    ))}
                   </div>
                 </div>
               </AnimatedSection>

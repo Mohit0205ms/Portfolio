@@ -4,10 +4,37 @@ import Image from 'next/image';
 import SocialLinkCard from './shared/SocialLinkCard';
 import { useWindowDimensions } from '@/hooks/dimensions';
 import AnimatedSection from './shared/AnimatedSection';
+import { urlFor } from '@/lib/sanity';
 
-const HeroSection = () => {
+interface SocialLinkData {
+  _id: string;
+  platform: string;
+  url: string;
+  icon: {
+    asset: {
+      _ref: string;
+    };
+  };
+  isActive: boolean;
+}
+
+interface HeroSectionProps {
+  socialLinks: SocialLinkData[];
+}
+
+const HeroSection = ({ socialLinks }: HeroSectionProps) => {
   const { width } = useWindowDimensions();
   const strokeThickness = width <= 1004 ? '1.5px' : '2px';
+
+  // Transform Sanity data to match SocialLinkCard props
+  const transformedSocialLinks = socialLinks
+    .filter(link => link.isActive)
+    .map((link, index) => ({
+      name: link.platform,
+      icon: urlFor(link.icon).url(),
+      profileUrl: link.url,
+      isAlternate: index % 2 === 1,
+    }));
   return (
     <div className='flex justify-center'>
       <div className='max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-16'>
@@ -53,10 +80,15 @@ const HeroSection = () => {
             </AnimatedSection>
             <AnimatedSection delay={0.25}>
               <div className='flex justify-start space-x-4'>
-                <SocialLinkCard />
-                <SocialLinkCard isAlternate />
-                <SocialLinkCard />
-                <SocialLinkCard isAlternate />
+                {transformedSocialLinks.map((link, index) => (
+                  <SocialLinkCard
+                    key={link.name}
+                    name={link.name}
+                    icon={link.icon}
+                    profileUrl={link.profileUrl}
+                    isAlternate={link.isAlternate}
+                  />
+                ))}
               </div>
             </AnimatedSection>
           </AnimatedSection>

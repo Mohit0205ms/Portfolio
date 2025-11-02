@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import { ModalProvider } from "@/contexts/ModalContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar/>
-        {children}
-        <FooterSection/>
-        <ScrollToTopButton/>
+        <ModalProvider>
+          <Navbar/>
+          {children}
+          <FooterSection/>
+          <ScrollToTopButton/>
+        </ModalProvider>
       </body>
     </html>
   );
