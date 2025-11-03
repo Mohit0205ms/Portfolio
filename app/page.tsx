@@ -34,8 +34,8 @@ function HomeContent() {
       <MyProjectSection projects={projects} useViewport={true} />
       <ContactMeSection
         description="I'm always open to discussing product design work or partnership opportunities. Whether you have a project in mind or just want to chat about design and development, feel free to reach out."
-        email="hello@mohitsingh.dev"
-        phoneNumber="+91 98765 43210"
+        email="mohitsingh0205ms@gmail.com"
+        phoneNumber="+91 8288931619"
         socialLinks={socialLinks}
       />
     </div>

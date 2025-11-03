@@ -40,28 +40,6 @@ export function PortfolioDataProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       setError(null);
 
-      // Try to load from localStorage (unless force refresh)
-      if (!forceRefresh && typeof window !== 'undefined') {
-        try {
-          const cached = localStorage.getItem('portfolio-data');
-          if (cached) {
-            const parsedData = JSON.parse(cached);
-            if (validateData(parsedData)) {
-              console.log('Loaded valid data from cache');
-              setData(parsedData);
-              setLoading(false);
-              return;
-            } else {
-              console.log('Cached data invalid, clearing cache');
-              localStorage.removeItem('portfolio-data');
-            }
-          }
-        } catch (cacheError) {
-          console.error('Error loading from cache:', cacheError);
-          localStorage.removeItem('portfolio-data');
-        }
-      }
-
       // Fetch from API
       console.log('Fetching from API...');
       const response = await fetch('/api/portfolio-data');
@@ -70,18 +48,13 @@ export function PortfolioDataProvider({ children }: { children: ReactNode }) {
       }
 
       const portfolioData = await response.json();
-
+      console.log("portfolioData: ", portfolioData);
       if (!validateData(portfolioData)) {
         throw new Error('API returned invalid data structure');
       }
 
       console.log('Fetched and validated data from API');
       setData(portfolioData);
-
-      // Cache in localStorage
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('portfolio-data', JSON.stringify(portfolioData));
-      }
 
       setRetryCount(0); // Reset retry count on success
 

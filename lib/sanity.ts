@@ -13,8 +13,8 @@ export async function getPortfolioData() {
     "aboutMe": *[_type == "aboutMe"][0],
     "experience": *[_type == "experience"] | order(_createdAt desc),
     "education": *[_type == "education"] | order(_createdAt desc),
-    "projects": *[_type == "projects"] | order(priority desc, _createdAt desc),
-    "skills": *[_type == "mySkills"] | order(_createdAt desc),
+    "projects": *[_type == "projects"] | order(priority asc, _createdAt desc),
+    "skills": *[_type == "mySkills"] | order(priority asc, _createdAt desc),
     "socialLinks": *[_type == "socialLinks"] | order(_createdAt desc),
     "home": *[_type == "home"][0]
   }`);
