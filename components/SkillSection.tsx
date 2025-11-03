@@ -31,7 +31,7 @@ const SkillSection = ({ skills, showViewAll = true, useViewport = false }: {skil
         </div>
 
         {/* View All Button */}
-        {showViewAll && skills && skills.length > 8 && (
+        {showViewAll && skills && skills.length > 15 && (
           <div className="text-center mt-12">
             <ViewAllButton
               onClick={() => router.push('/skills')}

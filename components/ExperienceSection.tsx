@@ -87,10 +87,12 @@ const ExperienceSection = ({ experiences, education, showViewAll = true, useView
     isAlternate: index % 2 === 1,
   }));
 
+  // Limit to 3 items per tab on home page, show all on dedicated page
+  const workData = showViewAll ? transformedExperiences.slice(0, 3) : transformedExperiences;
+  const educationData = showViewAll ? transformedEducation.slice(0, 3) : transformedEducation;
+
   // Get current data based on active tab
-  const fullCurrentData = activeTab === 'work' ? transformedExperiences : transformedEducation;
-  // Limit to 3 items on home page, show all on dedicated page
-  const currentData = showViewAll ? fullCurrentData.slice(0, 3) : fullCurrentData;
+  const currentData = activeTab === 'work' ? workData : educationData;
   const sectionTitle = activeTab === 'work' ? 'Experience' : 'Education';
 
   const handleTabChange = (tabId: string) => {
@@ -126,7 +128,7 @@ const ExperienceSection = ({ experiences, education, showViewAll = true, useView
         </div>
 
         {/* View All Button */}
-        {showViewAll && (experiences.length + education.length) > 3 && (
+        {showViewAll && (experiences.length || education.length) > 3 && (
           <div className="text-center mt-12">
             <ViewAllButton
               onClick={() => router.push('/experience')}

@@ -55,8 +55,8 @@ const MyProjectSection = ({ projects, showViewAll = true, useViewport = false }:
       liveUrl: '', // No live URL in Sanity data
     }));
 
-  // Limit to 3 projects on home page, show all on dedicated page
-  const transformedProjects = showViewAll ? allTransformedProjects.slice(0, 3) : allTransformedProjects;
+  // Always limit to maximum 3 projects
+  const transformedProjects = allTransformedProjects.slice(0, 3);
 
   return (
     <section id="projects" className="py-20 px-6 bg-black">
@@ -90,7 +90,7 @@ const MyProjectSection = ({ projects, showViewAll = true, useViewport = false }:
         </div>
 
         {/* View All Button */}
-        {showViewAll && projects.length > 1 && (
+        {showViewAll && projects.length > 3 && (
           <div className="text-center mt-12">
             <ViewAllButton
               onClick={() => router.push('/projects')}
