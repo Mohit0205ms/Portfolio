@@ -3,8 +3,10 @@
 import ExperienceCard from './shared/ExperienceCard';
 import ToggleButton from './shared/ToogleButton';
 import AnimatedSection from './shared/AnimatedSection';
+import ViewAllButton from './shared/ViewAllButton';
 import { urlFor } from '@/lib/sanity';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ExperienceData {
   _id: string;
@@ -35,10 +37,13 @@ interface EducationData {
 interface ExperienceSectionProps {
   experiences: ExperienceData[];
   education: EducationData[];
+  showViewAll?: boolean;
+  useViewport?: boolean;
 }
 
-const ExperienceSection = ({ experiences, education }: ExperienceSectionProps) => {
+const ExperienceSection = ({ experiences, education, showViewAll = true, useViewport = false }: ExperienceSectionProps) => {
   const [activeTab, setActiveTab] = useState('work');
+  const router = useRouter();
 
   // Helper function to convert Sanity rich text to plain text
   const convertRichTextToString = (blocks: any[]): string => {
@@ -83,7 +88,9 @@ const ExperienceSection = ({ experiences, education }: ExperienceSectionProps) =
   }));
 
   // Get current data based on active tab
-  const currentData = activeTab === 'work' ? transformedExperiences : transformedEducation;
+  const fullCurrentData = activeTab === 'work' ? transformedExperiences : transformedEducation;
+  // Limit to 3 items on home page, show all on dedicated page
+  const currentData = showViewAll ? fullCurrentData.slice(0, 3) : fullCurrentData;
   const sectionTitle = activeTab === 'work' ? 'Experience' : 'Education';
 
   const handleTabChange = (tabId: string) => {
@@ -93,17 +100,17 @@ const ExperienceSection = ({ experiences, education }: ExperienceSectionProps) =
   return (
     <section id="experience" className="py-6 px-4 sm:px-6 lg:px-8 bg-black mt-6">
       <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
+        <AnimatedSection useViewport={useViewport}>
           <h2 className="text-center mt-6 text-3xl md:text-4xl text-white mb-6">
             My <span className="font-extrabold">{sectionTitle}</span>
           </h2>
         </AnimatedSection>
-        <AnimatedSection delay={0.1}>
+        <AnimatedSection delay={0.1} useViewport={useViewport}>
           <ToggleButton onChange={handleTabChange} />
         </AnimatedSection>
         <div className="max-w-4xl mx-auto space-y-6">
           {currentData.map((item, index) => (
-            <AnimatedSection key={item.id} delay={0.15 + index * 0.1}>
+            <AnimatedSection key={item.id} delay={0.15 + index * 0.1} useViewport={useViewport}>
               <ExperienceCard
                 icon={item.icon}
                 position={item.position}
@@ -117,6 +124,16 @@ const ExperienceSection = ({ experiences, education }: ExperienceSectionProps) =
             </AnimatedSection>
           ))}
         </div>
+
+        {/* View All Button */}
+        {showViewAll && (experiences.length + education.length) > 3 && (
+          <div className="text-center mt-12">
+            <ViewAllButton
+              onClick={() => router.push('/experience')}
+              isDarkBackground={true}
+            />
+          </div>
+        )}
       </div>
     </section>
   );

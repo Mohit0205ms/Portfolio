@@ -64,16 +64,16 @@ const HeroSection = ({ socialLinks, home }: HeroSectionProps) => {
     <div className='flex justify-center'>
       <div className='max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-16'>
         <div className='flex flex-col-reverse md:flex-row justify-center items-center'>
-          <AnimatedSection className='flex-1 lg:pr-8 text-left mt-10 lg:mt-0' direction='left'>
+          <AnimatedSection className='flex-1 lg:pr-8 text-left mt-10 lg:mt-0' direction='left' useViewport={true}>
             {/* Left Side */}
             <div className='mb-4'>
-              <AnimatedSection delay={0.05}>
+              <AnimatedSection delay={0.05} useViewport={true}>
                 <p className='text-black text-[28px] md:text-4xl xl:text-5xl mb-2'>
                   Hello I'm{' '}
                   <span className='font-extrabold text-black'>Mohit Singh.</span>
                 </p>
               </AnimatedSection>
-              <AnimatedSection delay={0.1}>
+              <AnimatedSection delay={0.1} useViewport={true}>
                 <p className='text-black text-[28px] md:text-4xl xl:text-5xl mb-2'>
                   <span className='font-extrabold text-black'>Software</span>{' '}
                   <span
@@ -88,19 +88,19 @@ const HeroSection = ({ socialLinks, home }: HeroSectionProps) => {
                   </span>
                 </p>
               </AnimatedSection>
-              <AnimatedSection delay={0.15}>
+              <AnimatedSection delay={0.15} useViewport={true}>
                 <p className='text-black text-[28px] md:text-4xl lg:text-4xl xl:text-5xl mb-2'>
                   Based In{' '}
                   <span className='font-extrabold text-black'>India</span>
                 </p>
               </AnimatedSection>
             </div>
-            <AnimatedSection delay={0.2} className='mb-6'>
+            <AnimatedSection delay={0.2} className='mb-6' useViewport={true}>
               <span className='text-zinc-500 text-base leading-6'>
                 {heroDescription}
               </span>
             </AnimatedSection>
-            <AnimatedSection delay={0.25}>
+            <AnimatedSection delay={0.25} useViewport={true}>
               <div className='flex justify-start space-x-4'>
                 {transformedSocialLinks.map((link, index) => (
                   <SocialLinkCard
@@ -114,7 +114,7 @@ const HeroSection = ({ socialLinks, home }: HeroSectionProps) => {
               </div>
             </AnimatedSection>
           </AnimatedSection>
-          <AnimatedSection className='flex-1 mt-8 lg:mt-0' direction='right'>
+          <AnimatedSection className='flex-1 mt-8 lg:mt-0' direction='right' useViewport={true}>
             {/* Right Side */}
             <Image
               src={images.heroBanner}

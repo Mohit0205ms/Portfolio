@@ -4,7 +4,9 @@ import ProjectCard from './shared/ProjectCard';
 import AnimatedSection from './shared/AnimatedSection';
 import VideoModal from './shared/VideoModal';
 import ResumeModal from './shared/ResumeModal';
+import ViewAllButton from './shared/ViewAllButton';
 import { useModal } from '@/contexts/ModalContext';
+import { useRouter } from 'next/navigation';
 
 interface ProjectData {
   _id: string;
@@ -16,10 +18,13 @@ interface ProjectData {
 
 interface MyProjectSectionProps {
   projects: ProjectData[];
+  showViewAll?: boolean;
+  useViewport?: boolean;
 }
 
-const MyProjectSection = ({ projects }: MyProjectSectionProps) => {
+const MyProjectSection = ({ projects, showViewAll = true, useViewport = false }: MyProjectSectionProps) => {
   const { isModalOpen, isResumeModalOpen, openModal, closeModal, closeResumeModal, currentVideo, currentResume } = useModal();
+  const router = useRouter();
 
   // Helper function to convert Sanity rich text to plain text
   const convertRichTextToString = (blocks: any[]): string => {
@@ -38,7 +43,7 @@ const MyProjectSection = ({ projects }: MyProjectSectionProps) => {
   };
 
   // Transform Sanity data to match ProjectCard props
-  const transformedProjects = projects
+  const allTransformedProjects = projects
     .sort((a, b) => a.priority - b.priority) // Sort by priority
     .map((project, index) => ({
       index: index + 1,
@@ -50,11 +55,14 @@ const MyProjectSection = ({ projects }: MyProjectSectionProps) => {
       liveUrl: '', // No live URL in Sanity data
     }));
 
+  // Limit to 3 projects on home page, show all on dedicated page
+  const transformedProjects = showViewAll ? allTransformedProjects.slice(0, 3) : allTransformedProjects;
+
   return (
     <section id="projects" className="py-20 px-6 bg-black">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <AnimatedSection className="text-center mb-16">
+        <AnimatedSection className="text-center mb-16" useViewport={useViewport}>
           <h2 className="text-4xl md:text-5xl text-gray-900 dark:text-white mb-4">
             My <span className='font-extrabold'>Projects</span>
           </h2>
@@ -62,28 +70,34 @@ const MyProjectSection = ({ projects }: MyProjectSectionProps) => {
 
         {/* Projects Grid */}
         <div className="space-y-12">
-          {transformedProjects.map((project, index) => (
-            <AnimatedSection key={project.index} delay={index * 0.1}>
-              <ProjectCard
-                index={project.index}
-                image={project.image}
-                name={project.name}
-                description={project.description}
-                demoUrl={project.demoUrl}
-                githubUrl={project.githubUrl}
-                liveUrl={project.liveUrl}
-                onOpenModal={openModal}
-              />
-            </AnimatedSection>
-          ))}
+          {transformedProjects.map((project, index) => {
+            const projectId = project.name?.toLowerCase().replace(/\s+/g, '-') || `project-${index}`;
+            return (
+              <AnimatedSection key={projectId} delay={index * 0.1} useViewport={useViewport}>
+                <ProjectCard
+                  index={project.index}
+                  image={project.image}
+                  name={project.name}
+                  description={project.description}
+                  demoUrl={project.demoUrl}
+                  githubUrl={project.githubUrl}
+                  liveUrl={project.liveUrl}
+                  onOpenModal={openModal}
+                />
+              </AnimatedSection>
+            );
+          })}
         </div>
 
-        {/* View More Button */}
-        {/* <div className="text-center mt-12">
-          <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
-            View All Projects
-          </button>
-        </div> */}
+        {/* View All Button */}
+        {showViewAll && projects.length > 1 && (
+          <div className="text-center mt-12">
+            <ViewAllButton
+              onClick={() => router.push('/projects')}
+              isDarkBackground={true}
+            />
+          </div>
+        )}
       </div>
 
       {/* Video Modal */}

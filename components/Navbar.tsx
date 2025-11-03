@@ -4,16 +4,12 @@ import { useWindowDimensions } from '@/hooks/dimensions';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useModal } from '@/contexts/ModalContext';
+import { usePortfolioData } from '@/contexts/PortfolioDataContext';
 
-interface NavbarProps {
-  home?: {
-    resume: string;
-  };
-}
-
-const Navbar = ({ home }: NavbarProps) => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { openResumeModal } = useModal();
+  const { data } = usePortfolioData();
 
   const { width } = useWindowDimensions();
 
@@ -22,7 +18,7 @@ const Navbar = ({ home }: NavbarProps) => {
   };
 
   const handleResumeClick = () => {
-    let resumeUrl = home?.resume?.trim() || 'https://drive.google.com/file/d/1EXAMPLE/preview';
+    let resumeUrl = data?.home?.resume?.trim() || 'https://drive.google.com/file/d/1EXAMPLE/preview';
 
     // Convert Google Drive sharing link to preview link if needed
     if (resumeUrl.includes('drive.google.com/file/d/') && !resumeUrl.includes('/preview')) {
@@ -48,6 +44,12 @@ const Navbar = ({ home }: NavbarProps) => {
 
             {/* Desktop and Tablet Menu */}
             <div className='hidden md:flex items-center space-x-8'>
+              <a
+                href='/'
+                className='text-black font-semibold hover:text-gray-600 transition-colors'
+              >
+                Home
+              </a>
               <a
                 href='#skills'
                 className='text-black font-semibold hover:text-gray-600 transition-colors'

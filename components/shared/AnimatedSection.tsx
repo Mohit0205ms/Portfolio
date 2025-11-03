@@ -8,13 +8,15 @@ interface AnimatedSectionProps {
   className?: string;
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right';
+  useViewport?: boolean; // New prop to control animation trigger
 }
 
 const AnimatedSection = ({
   children,
   className = '',
   delay = 0,
-  direction = 'up'
+  direction = 'up',
+  useViewport = false // Default to immediate animation
 }: AnimatedSectionProps) => {
   const getInitialPosition = () => {
     switch (direction) {
@@ -44,18 +46,29 @@ const AnimatedSection = ({
     }
   };
 
+  const motionProps = useViewport
+    ? {
+        initial: getInitialPosition(),
+        whileInView: getFinalPosition(),
+        viewport: { once: true, amount: 0.3 },
+        transition: {
+          duration: 0.4,
+          delay: delay,
+          ease: 'easeOut'
+        }
+      }
+    : {
+        initial: getInitialPosition(),
+        animate: getFinalPosition(),
+        transition: {
+          duration: 0.4,
+          delay: delay,
+          ease: 'easeOut'
+        }
+      };
+
   return (
-    <motion.div
-      initial={getInitialPosition()}
-      whileInView={getFinalPosition()}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{
-        duration: 0.4,
-        delay: delay,
-        ease: 'easeOut'
-      }}
-      className={className}
-    >
+    <motion.div {...motionProps} className={className}>
       {children}
     </motion.div>
   );
