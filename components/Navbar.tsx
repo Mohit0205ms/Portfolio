@@ -18,10 +18,15 @@ const Navbar = () => {
   };
 
   const handleResumeClick = () => {
-    let resumeUrl = data?.home?.resume?.trim() || 'https://drive.google.com/file/d/1EXAMPLE/preview';
+    let resumeUrl =
+      data?.home?.resume?.trim() ||
+      'https://drive.google.com/file/d/1EXAMPLE/preview';
 
     // Convert Google Drive sharing link to preview link if needed
-    if (resumeUrl.includes('drive.google.com/file/d/') && !resumeUrl.includes('/preview')) {
+    if (
+      resumeUrl.includes('drive.google.com/file/d/') &&
+      !resumeUrl.includes('/preview')
+    ) {
       const fileId = resumeUrl.split('/d/')[1]?.split('/')[0];
       if (fileId) {
         resumeUrl = `https://drive.google.com/file/d/${fileId}/preview`;
@@ -131,7 +136,7 @@ const Navbar = () => {
         className={`fixed top-0 right-0 h-full bg-white z-50 transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{width: width * 0.7}}
+        style={{ width: width * 0.7 }}
       >
         <div className='px-6 py-8 space-y-6'>
           <div className='flex justify-between items-center mb-4'>
@@ -145,11 +150,10 @@ const Navbar = () => {
             </button>
           </div>
           <a
-            href='#about'
+            href='/'
             className='block text-black font-semibold text-lg hover:text-gray-600 transition-colors py-2'
-            onClick={toggleMenu}
           >
-            About Me
+            Home
           </a>
           <a
             href='#skills'
@@ -157,6 +161,19 @@ const Navbar = () => {
             onClick={toggleMenu}
           >
             Skills
+          </a>
+          <a
+            href='#experience'
+            className='block text-black font-semibold text-lg hover:text-gray-600 transition-colors py-2'
+          >
+            Experience
+          </a>
+          <a
+            href='#about'
+            className='block text-black font-semibold text-lg hover:text-gray-600 transition-colors py-2'
+            onClick={toggleMenu}
+          >
+            About Me
           </a>
           <a
             href='#projects'
