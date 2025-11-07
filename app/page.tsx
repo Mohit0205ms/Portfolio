@@ -12,7 +12,7 @@ function HomeContent() {
   const { data, loading, error } = usePortfolioData();
 
   if (loading) {
-    return <div className='min-h-screen bg-white flex items-center justify-center'>Loading...</div>;
+    return <div className='min-h-screen bg-white flex items-center justify-center text-black'>Loading...</div>;
   }
 
   if (error) {
